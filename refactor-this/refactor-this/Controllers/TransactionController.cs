@@ -38,8 +38,12 @@ namespace refactor_this.Controllers
         {
             using (var connection = Helpers.NewConnection())
             {
+                var command = new SqlCommand("update Accounts set Amount = Amount + @Amount where Id = '@Id'", connection);
+                command.Parameters.Add("@Id", System.Data.SqlDbType.UniqueIdentifier); // UniqueIdentifier is GUID
+                command.Parameters.Add("@Amount", System.Data.SqlDbType.Decimal);
+                command.Parameters["@Id"].Value = id;
+                command.Parameters["@Amount"].Value = transaction.Amount;
 
-                SqlCommand command = new SqlCommand($"update Accounts set Amount = Amount + {transaction.Amount} where Id = '{id}'", connection);
                 connection.Open();
                 if (command.ExecuteNonQuery() != 1)
                     return BadRequest("Could not update account amount");
