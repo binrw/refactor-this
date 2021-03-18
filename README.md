@@ -43,3 +43,16 @@ Models should conform to the following formats:
     "Amount": -12.3
 }
 ```
+
+## Changes Made
+- Updated Amount to use the Decimal datatype instead of float
+    - Decimal is a more suitable datatype than float when representing money
+- Parameterised several functions to avoid SQL Injections
+    - The SQL statements were not being sanitised properly, and thus were vulnerable to SQL injection attacks. 
+- Capitalised SQL keywords to improve readability
+    - Some SQL commands were capitalised, and others were not capitalised at all. This change results in a more consistent style in the project and improves readability.
+
+## Future Improvements
+- Finish parameterising all functions with SQL, where necessary
+- Error messages should be updated to be more descriptive
+- More logs should be added for debugging in the future - could be setup to only log when run in DEBUG mode and not in production
