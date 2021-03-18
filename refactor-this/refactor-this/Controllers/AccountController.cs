@@ -44,7 +44,10 @@ namespace refactor_this.Controllers
         {
             using (var connection = Helpers.NewConnection())
             {
-                SqlCommand command = new SqlCommand($"select * from Accounts where Id = '{id}'", connection);
+                var command = new SqlCommand($"select * from Accounts where Id = '@Id'", connection);
+                command.Parameters.Add("@Id", System.Data.SqlDbType.UniqueIdentifier); // UniqueIdentifier is GUID
+                command.Parameters["@Id"].Value = id;
+
                 connection.Open();
                 var reader = command.ExecuteReader();
                 if (!reader.Read())
