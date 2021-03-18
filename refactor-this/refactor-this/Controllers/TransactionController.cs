@@ -16,7 +16,10 @@ namespace refactor_this.Controllers
         {
             using (var connection = Helpers.NewConnection())
             {
-                SqlCommand command = new SqlCommand($"select Amount, Date from Transactions where AccountId = '{id}'", connection);
+                var command = new SqlCommand("select Amount, Date from Transactions where AccountId = '@Id'", connection);
+                command.Parameters.Add("@Id", System.Data.SqlDbType.UniqueIdentifier); // UniqueIdentifier is GUID
+                command.Parameters["@Id"].Value = id;
+
                 connection.Open();
                 var reader = command.ExecuteReader();
                 var transactions = new List<Transaction>();
