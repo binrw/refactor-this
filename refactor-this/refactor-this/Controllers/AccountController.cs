@@ -25,7 +25,7 @@ namespace refactor_this.Controllers
         {
             using (var connection = Helpers.NewConnection())
             {
-                SqlCommand command = new SqlCommand($"select Id from Accounts", connection);
+                SqlCommand command = new SqlCommand($"SELECT Id FROM Accounts", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 var accounts = new List<Account>();
@@ -44,7 +44,7 @@ namespace refactor_this.Controllers
         {
             using (var connection = Helpers.NewConnection())
             {
-                var command = new SqlCommand("select * from Accounts where Id = '@Id'", connection);
+                var command = new SqlCommand("SELECT * FROM Accounts WHERE Id = '@Id'", connection);
                 command.Parameters.Add("@Id", System.Data.SqlDbType.UniqueIdentifier); // UniqueIdentifier is GUID
                 command.Parameters["@Id"].Value = id;
 

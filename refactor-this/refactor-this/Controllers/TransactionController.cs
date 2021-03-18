@@ -16,7 +16,7 @@ namespace refactor_this.Controllers
         {
             using (var connection = Helpers.NewConnection())
             {
-                var command = new SqlCommand("select Amount, Date from Transactions where AccountId = '@Id'", connection);
+                var command = new SqlCommand("SELECT Amount, Date FROM Transactions WHERE AccountId = '@Id'", connection);
                 command.Parameters.Add("@Id", System.Data.SqlDbType.UniqueIdentifier); // UniqueIdentifier is GUID
                 command.Parameters["@Id"].Value = id;
 
@@ -38,7 +38,7 @@ namespace refactor_this.Controllers
         {
             using (var connection = Helpers.NewConnection())
             {
-                var command = new SqlCommand("update Accounts set Amount = Amount + @Amount where Id = '@Id'", connection);
+                var command = new SqlCommand("UPDATE Accounts SET Amount = Amount + @Amount WHERE Id = '@Id'", connection);
                 command.Parameters.Add("@Id", System.Data.SqlDbType.UniqueIdentifier); // UniqueIdentifier is GUID
                 command.Parameters.Add("@Amount", System.Data.SqlDbType.Decimal);
                 command.Parameters["@Id"].Value = id;
