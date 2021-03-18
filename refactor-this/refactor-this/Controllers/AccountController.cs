@@ -53,7 +53,7 @@ namespace refactor_this.Controllers
                 var account = new Account(id);
                 account.Name = reader["Name"].ToString();
                 account.Number = reader["Number"].ToString();
-                account.Amount = float.Parse(reader["Amount"].ToString());
+                account.Amount = Decimal.Parse(reader["Amount"].ToString());
                 return account;
             }
         }

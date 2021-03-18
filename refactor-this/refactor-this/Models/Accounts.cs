@@ -16,7 +16,7 @@ namespace refactor_this.Models
 
         public string Number { get; set; }
 
-        public float Amount { get; set; }
+        public Decimal Amount { get; set; }
 
         public Account()
         {

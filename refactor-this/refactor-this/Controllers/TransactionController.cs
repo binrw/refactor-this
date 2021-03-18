@@ -22,7 +22,7 @@ namespace refactor_this.Controllers
                 var transactions = new List<Transaction>();
                 while (reader.Read())
                 {
-                    var amount = (float)reader.GetDouble(0);
+                    var amount = (Decimal)reader.GetDouble(0);
                     var date = reader.GetDateTime(1);
                     transactions.Add(new Transaction(amount, date));
                 }
